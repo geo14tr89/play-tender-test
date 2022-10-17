@@ -13,7 +13,8 @@
             'username' => 'root',
             'password' => '',
             'charset' => 'utf8',
-        ],``` 
+        ],
+``` 
 to ```'dsn' => 'mysql:host=localhost;dbname=tender'```
 10. Run ```php yii migrate```
 11. Change ```'dsn' => 'mysql:host=localhost;dbname=tender'``` to ```'dsn' => 'mysql:host=db;dbname=tender'```
