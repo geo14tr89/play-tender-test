@@ -1,14 +1,25 @@
 1. Open terminal
 2. Git clone
 3. In root folder ```docker-compose up -d --build```
-4  Run `` composer install```
-5. Open ```common/config/main-local.php``` file
-6. Change ```'dsn' => 'mysql:host=db;dbname=tender'``` to ```'dsn' => 'mysql:host=localhost;dbname=tender'```
-7. Run ```php yii migrate```
-8. Revert changes in ```common/config/main-local.php``` file
-9. Open ``` C:\Windows\System32\drivers\etc\hosts ```
-10. Insert new host ``` 127.0.0.1 tender.lol ```
-11. Run in browser ```http://tender.lo/```
+4. Run ```composer install```
+5. Run ```php init```
+6. Choose ```Development```
+7.  
+8. Open ```common/config/main-local.php``` file
+9. Change 
+```        'db' => [
+            'class' => \yii\db\Connection::class,
+            'dsn' => 'mysql:host=localhost;dbname=yii2advanced',
+            'username' => 'root',
+            'password' => '',
+            'charset' => 'utf8',
+        ],``` 
+to ```'dsn' => 'mysql:host=localhost;dbname=tender'```
+10. Run ```php yii migrate```
+11. Change ```'dsn' => 'mysql:host=localhost;dbname=tender'``` to ```'dsn' => 'mysql:host=db;dbname=tender'```
+12. Open ``` C:\Windows\System32\drivers\etc\hosts ```
+13. Insert new host ``` 127.0.0.1 tender.lol ```
+14. Run in browser ```http://tender.lo/```
 
 
 <p align="center">
