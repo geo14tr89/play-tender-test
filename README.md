@@ -4,15 +4,14 @@
 4. Run ```composer install```
 5. Run ```php init```
 6. Choose ```Development```
-7. Open ```common/config/main-local.php``` file
-8. Change ```'dsn' => 'mysql:host=localhost;dbname=yii2advanced'``` to ```dsn' => 'mysql:host=localhost;dbname=tender'```
-9. Change ```'username' => 'root'``` to ```'username' => 'tender'```
-10. Change ```'password' => ''``` to ```'password' => 'tender'```
-11. Run ```php yii migrate```
-12. Change ```'dsn' => 'mysql:host=localhost;dbname=tender'``` to ```'dsn' => 'mysql:host=db;dbname=tender'```
-13. Open ``` C:\Windows\System32\drivers\etc\hosts ```
-14. Insert new host ``` 127.0.0.1 tender.lol ```
-15. Run in browser ```http://tender.lol/```
+7. Rename ```.env.example``` to ```.env```
+8. Open ```common/config/main-local.php``` file
+9. Change ```'dsn' => 'mysql:host='. env('DB_HOST') .';dbname='. env('DB_NAME')``` to ```'dsn' => 'mysql:host=db;dbname='. env('DB_NAME')```
+10. Run ```php yii migrate```
+11. Change ```'dsn' => 'mysql:host=db;dbname='. env('DB_NAME')``` to ```dsn' => 'mysql:host='. env('DB_HOST') .';dbname='. env('DB_NAME')```
+12. Open ``` C:\Windows\System32\drivers\etc\hosts ```
+13. Insert new host ``` 127.0.0.1 tender.lol ```
+14. Run in browser ```http://tender.lol/```
 
 
 <p align="center">
