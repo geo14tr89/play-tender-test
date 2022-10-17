@@ -1,0 +1,51 @@
+version: '3'
+services:
+  php-fpm:
+    image: "andrii_kharkovyi/tender"
+    env_file:
+      - ./docker/local.env
+    build:
+      context: docker/php-fpm
+    volumes:
+      - ./:/var/www
+    networks:
+      - internal
+    expose:
+      - 9103
+    links:
+      - db
+  nginx:
+    build:
+      context: docker/nginx
+    volumes:
+      - ./:/var/www
+    ports:
+      - "80:80"
+    depends_on:
+      - php-fpm
+    networks:
+      - internal
+  db:
+    image: mysql:5.7.22
+    container_name: db
+    restart: unless-stopped
+    tty: true
+    ports:
+      - "3306:3306"
+    volumes:
+      - ./mysql:/var/lib/mysql
+    environment:
+      MYSQL_DATABASE: tender
+      MYSQL_USER: tender
+      MYSQL_PASSWORD: tender
+      MYSQL_ROOT_PASSWORD: tender
+      SERVICE_TAGS: dev
+      SERVICE_NAMES: mysql
+    networks:
+      - internal
+
+networks:
+  internal:
+    driver: bridge
+    ipam:
+      driver: default
