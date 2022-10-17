@@ -12,7 +12,7 @@
 12. Change ```'dsn' => 'mysql:host=localhost;dbname=tender'``` to ```'dsn' => 'mysql:host=db;dbname=tender'```
 13. Open ``` C:\Windows\System32\drivers\etc\hosts ```
 14. Insert new host ``` 127.0.0.1 tender.lol ```
-15. Run in browser ```http://tender.lo/```
+15. Run in browser ```http://tender.lol/```
 
 
 <p align="center">
