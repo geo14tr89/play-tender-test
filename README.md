@@ -6,16 +6,26 @@
 6. Choose ```Development```
 7.  
 8. Open ```common/config/main-local.php``` file
-9. Change 
-```        'db' => [
-            'class' => \yii\db\Connection::class,
-            'dsn' => 'mysql:host=localhost;dbname=yii2advanced',
-            'username' => 'root',
-            'password' => '',
-            'charset' => 'utf8',
-        ],
+9. Change ```
+            'db' => [
+                        'class' => \yii\db\Connection::class,
+                        'dsn' => 'mysql:host=localhost;dbname=yii2advanced',
+                        'username' => 'root',
+                        'password' => '',
+                        'charset' => 'utf8',
+            ],
 ``` 
-to ```'dsn' => 'mysql:host=localhost;dbname=tender'```
+to 
+```
+'db' => [
+                        'class' => \yii\db\Connection::class,
+                        'dsn' => 'mysql:host=localhost;dbname=yii2advanced',
+                        'username' => 'root',
+                        'password' => '',
+                        'charset' => 'utf8',
+            ],
+
+```
 10. Run ```php yii migrate```
 11. Change ```'dsn' => 'mysql:host=localhost;dbname=tender'``` to ```'dsn' => 'mysql:host=db;dbname=tender'```
 12. Open ``` C:\Windows\System32\drivers\etc\hosts ```
