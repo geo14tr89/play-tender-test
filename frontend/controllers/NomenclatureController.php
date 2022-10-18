@@ -3,10 +3,13 @@
 namespace frontend\controllers;
 
 use common\models\Nomenclature;
+use Throwable;
 use yii\data\ActiveDataProvider;
+use yii\db\StaleObjectException;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\web\Response;
 
 /**
  * NomenclatureController implements the CRUD actions for Nomenclature model.
@@ -22,7 +25,7 @@ class NomenclatureController extends Controller
             parent::behaviors(),
             [
                 'verbs' => [
-                    'class' => VerbFilter::className(),
+                    'class' => VerbFilter::class,
                     'actions' => [
                         'delete' => ['POST'],
                     ],
@@ -40,16 +43,6 @@ class NomenclatureController extends Controller
     {
         $dataProvider = new ActiveDataProvider([
             'query' => Nomenclature::find(),
-            /*
-            'pagination' => [
-                'pageSize' => 50
-            ],
-            'sort' => [
-                'defaultOrder' => [
-                    'id' => SORT_DESC,
-                ]
-            ],
-            */
         ]);
 
         return $this->render('index', [
@@ -63,7 +56,7 @@ class NomenclatureController extends Controller
      * @return string
      * @throws NotFoundHttpException if the model cannot be found
      */
-    public function actionView($id)
+    public function actionView(int $id): string
     {
         return $this->render('view', [
             'model' => $this->findModel($id),
@@ -73,7 +66,7 @@ class NomenclatureController extends Controller
     /**
      * Creates a new Nomenclature model.
      * If creation is successful, the browser will be redirected to the 'view' page.
-     * @return string|\yii\web\Response
+     * @return string|Response
      */
     public function actionCreate()
     {
@@ -96,10 +89,10 @@ class NomenclatureController extends Controller
      * Updates an existing Nomenclature model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param int $id ID
-     * @return string|\yii\web\Response
+     * @return string|Response
      * @throws NotFoundHttpException if the model cannot be found
      */
-    public function actionUpdate($id)
+    public function actionUpdate(int $id)
     {
         $model = $this->findModel($id);
 
@@ -116,10 +109,12 @@ class NomenclatureController extends Controller
      * Deletes an existing Nomenclature model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param int $id ID
-     * @return \yii\web\Response
+     * @return Response
      * @throws NotFoundHttpException if the model cannot be found
+     * @throws Throwable
+     * @throws StaleObjectException
      */
-    public function actionDelete($id)
+    public function actionDelete(int $id): Response
     {
         $this->findModel($id)->delete();
 
@@ -133,7 +128,7 @@ class NomenclatureController extends Controller
      * @return Nomenclature the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
-    protected function findModel($id)
+    protected function findModel(int $id): Nomenclature
     {
         if (($model = Nomenclature::findOne(['id' => $id])) !== null) {
             return $model;

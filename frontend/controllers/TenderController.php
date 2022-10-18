@@ -42,7 +42,7 @@ class TenderController extends Controller
                     ],
                 ],
                 'verbs' => [
-                    'class' => VerbFilter::className(),
+                    'class' => VerbFilter::class,
                     'actions' => [
                         'delete' => ['POST'],
                     ],
@@ -169,7 +169,8 @@ class TenderController extends Controller
         $tenderModel = $this->findModel($id);
         $nomenclatureModels = $tenderModel->nomenclatures();
 
-        if ($tenderModel->load($this->request->post()) && $tenderModel->validate()) {
+        if ($tenderModel->load($this->request->post())) {
+            $tenderModel->validate();
             $oldIDs = ArrayHelper::map($nomenclatureModels, 'id', 'id');
             $nomenclatureModels = Model::createMultiple(Nomenclature::class, $nomenclatureModels->all());
             Model::loadMultiple($nomenclatureModels, Yii::$app->request->post());
@@ -243,10 +244,5 @@ class TenderController extends Controller
         }
 
         throw new NotFoundHttpException('The requested page does not exist.');
-    }
-
-    protected function isUserAuthor()
-    {
-        return $this->findModel(Yii::$app->request->get('id'))->author->id == Yii::$app->user->id;
     }
 }
