@@ -47,3 +47,6 @@ phpunit.phar
 
 # ignore .env
 .env
+
+# ignore mysql
+/mysql
