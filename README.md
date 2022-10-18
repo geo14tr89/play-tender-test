@@ -11,7 +11,7 @@
 11. Change ```'password' => '',``` to ```'password' => env('DB_PASS'),```
 12. Connect to mysql server via params from ```.env``` and create database ```tender```
 12. Run ```php yii migrate```
-13. Change ```'dsn' => 'mysql:host=db;dbname='. env('DB_NAME')``` to ```dsn' => 'mysql:host='. env('DB_HOST') .';dbname='. env('DB_NAME')```
+13. Change ```'dsn' => 'mysql:host=localhost;dbname='. env('DB_NAME')``` to ```dsn' => 'mysql:host='. env('DB_HOST') .';dbname='. env('DB_NAME')```
 14. Open ``` C:\Windows\System32\drivers\etc\hosts ```
 15. Insert new host ``` 127.0.0.1 tender.lol ```
 16. Run in browser ```http://tender.lol/```
